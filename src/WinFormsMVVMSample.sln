@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsMvvmSample", "ChartSample.Forms\WinFormsMvvmSample.csproj", "{7102A1C9-F540-4D80-93B1-7BC94B59D55E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsMvvmSampleTests", "ChartSampleTests\WinFormsMvvmSampleTests.csproj", "{A5A9840E-E1F5-4995-8CA0-2E1C1CD75A3E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7102A1C9-F540-4D80-93B1-7BC94B59D55E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7102A1C9-F540-4D80-93B1-7BC94B59D55E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7102A1C9-F540-4D80-93B1-7BC94B59D55E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7102A1C9-F540-4D80-93B1-7BC94B59D55E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5A9840E-E1F5-4995-8CA0-2E1C1CD75A3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5A9840E-E1F5-4995-8CA0-2E1C1CD75A3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5A9840E-E1F5-4995-8CA0-2E1C1CD75A3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5A9840E-E1F5-4995-8CA0-2E1C1CD75A3E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5935F2F5-BE5C-42E7-8B43-7BE5BDC405EA}
+	EndGlobalSection
+EndGlobal
