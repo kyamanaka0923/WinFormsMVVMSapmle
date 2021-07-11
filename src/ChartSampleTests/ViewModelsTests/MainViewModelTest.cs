@@ -1,5 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Windows.Threading;
 using Castle.Core.Internal;
 using ChartSample.Forms.BindHelpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -19,7 +20,7 @@ namespace ChartSampleTests.ViewModelsTests
             var messageServiceMock = new Mock<IMessageService>();
             var machineDataServiceMock = new Mock<IMachineDataService>();
 
-            var viewModel = new MainViewModel(messageServiceMock.Object, machineDataServiceMock.Object);
+            var viewModel = new MainViewModel(messageServiceMock.Object, machineDataServiceMock.Object, Dispatcher.CurrentDispatcher);
 
             messageServiceMock.Setup(x => x.QuestionMessage(It.IsAny<string>())).Returns(DialogResult.OK);
 
@@ -38,7 +39,7 @@ namespace ChartSampleTests.ViewModelsTests
 
             var machineDataServiceMock = new Mock<IMachineDataService>();
 
-            var viewModel = new MainViewModel(messageServiceMock.Object, machineDataServiceMock.Object);
+            var viewModel = new MainViewModel(messageServiceMock.Object, machineDataServiceMock.Object, Dispatcher.CurrentDispatcher);
 
             messageServiceMock.Setup(x => x.QuestionMessage(It.IsAny<string>())).Returns(DialogResult.Cancel);
 

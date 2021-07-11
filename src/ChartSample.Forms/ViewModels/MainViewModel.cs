@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.Windows.Threading;
 using ChartSample.Forms.BindHelpers;
 using WinFormsMvvmSample.Services;
 
@@ -11,10 +12,11 @@ namespace WinFormsMvvmSample.ViewModels
         private readonly IMessageService _messageService;
         private readonly IMachineDataService _machineDataService;
 
-        public MainViewModel(IMessageService messageService, IMachineDataService machineDataService)
+        public MainViewModel(IMessageService messageService, IMachineDataService machineDataService, Dispatcher dispatcher)
         {
             _messageService = messageService;
             _machineDataService = machineDataService;
+            MachineDataGridSource = new BindingListAsync<MainViewModelGrid>(dispatcher);
         }
         public string MyTextBoxText { get; set; }
 
@@ -22,8 +24,7 @@ namespace WinFormsMvvmSample.ViewModels
 
         private DateTime _startDatePickerValue = DateTime.Today;
         private DateTime _endDatePickerValue = DateTime.Today;
-        public BindingList<MainViewModelGrid> MachineDataGridSource { get; set; }
-        = new BindingList<MainViewModelGrid>();
+        public BindingListAsync<MainViewModelGrid> MachineDataGridSource { get; set; }
 
         public string AaaTextBoxText
         {
@@ -48,7 +49,7 @@ namespace WinFormsMvvmSample.ViewModels
             AaaTextBoxText = "AAA updated!";
             StartDateTimeValue = DateTime.Today;
             EndDateTimeValue = StartDateTimeValue.AddDays(1);
-            MachineDataGridSource = _machineDataService.FindById(AaaTextBoxText);
+            MachineDataGridSource.Reset(_machineDataService.FindById(AaaTextBoxText));
         }
 
         public void Save()

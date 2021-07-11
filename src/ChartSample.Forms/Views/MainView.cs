@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Windows.Threading;
 using ChartSample.Forms.BindHelpers;
 using CommandLine;
 using WinFormsMvvmSample.Services;
@@ -9,37 +11,25 @@ using WinFormsMvvmSample.ViewModels;
 
 namespace WinFormsMvvmSample.Views
 {
-    // コマンドラインオプション取得
-    internal class Options
-    {
-        /// <summary>
-        /// Businessモデル名を入力
-        /// </summary>
-        [Option('B', "BU", Required = true, HelpText = "BUを入力する")]
-        public string Bu { get; set; }
-    }
-
     public partial class MainView : Form
     {
 
         private readonly MainViewModel _viewModel;
 
-        public MainView()
+        public MainView(Options options)
         {
             InitializeComponent();
 
-            var options = GetOptions();
-
-            _viewModel = new MainViewModel(new MessageService(), new MachineDataService()) {AaaTextBoxText = options.Bu};
-
+            _viewModel = new MainViewModel(new MessageService(), new MachineDataService(), Dispatcher.CurrentDispatcher)
+            {
+                AaaTextBoxText = options.Bu, Dispatcher = Dispatcher.CurrentDispatcher
+            };
 
             // Binding
             AAATextBox.DataBindings.Add(nameof(AAATextBox.Text), _viewModel, nameof(_viewModel.AaaTextBoxText));
 
             StartDatePicker.DataBindings.Add(nameof(StartDatePicker.Value), _viewModel,
                 nameof(_viewModel.StartDateTimeValue));
-            EndDatePicker.DataBindings.Add(nameof(EndDatePicker.Value), _viewModel,
-                nameof(_viewModel.EndDateTimeValue));
 
             // DataGridの設定
             MachineDataGrid.DataSource = _viewModel.MachineDataGridSource;
@@ -96,27 +86,9 @@ namespace WinFormsMvvmSample.Views
 
         }
 
-        /// <summary>
-        /// オプションを取得
-        /// </summary>
-        /// <returns></returns>
-        private Options GetOptions()
+        private async void UpdateButton_Click(object sender, EventArgs e)
         {
-            var args = Environment.GetCommandLineArgs();
-
-            var parserResult = Parser.Default.ParseArguments<Options>(args);
-
-            if (parserResult.Tag != ParserResultType.Parsed) return null;
-            if (!(parserResult is Parsed<Options> parsed)) return null;
-            var opt = parsed.Value;
-
-            return opt;
-
-        }
-
-        private void UpdateButton_Click(object sender, EventArgs e)
-        {
-            _viewModel.Update();
+            await Task.Run(() => _viewModel.Update());
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -124,4 +96,5 @@ namespace WinFormsMvvmSample.Views
             _viewModel.Save();
         }
     }
+
 }

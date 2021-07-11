@@ -1,16 +1,19 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using WinFormsMvvmSample.ViewModels;
 
 namespace WinFormsMvvmSample.Services
 {
     public class MachineDataService : IMachineDataService
     {
-        public BindingList<MainViewModelGrid> FindById(string id)
+        public IEnumerable<MainViewModelGrid> FindById(string id)
         {
-            var machineDataDataGridSource = new BindingList<MainViewModelGrid>();
-            machineDataDataGridSource.Add(new MainViewModelGrid("1", "aaa"));
-            machineDataDataGridSource.Add(new MainViewModelGrid("2", "bbb"));
-            machineDataDataGridSource.Add(new MainViewModelGrid("3", "ccc"));
+            var machineDataDataGridSource = new List<MainViewModelGrid>
+            {
+                new MainViewModelGrid("1", "aaa", true),
+                new MainViewModelGrid("2", "bbb", false),
+                new MainViewModelGrid("3", "ccc", false)
+            };
 
             return machineDataDataGridSource;
         }
