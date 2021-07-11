@@ -34,12 +34,8 @@ namespace WinFormsMvvmSample.Views
             // DataGridの設定
             MachineDataGrid.DataSource = _viewModel.MachineDataGridSource;
 
-            // ReSharper disable once PossibleNullReferenceException
-            MachineDataGrid.Columns[nameof(MainViewModelGrid.Id)].HeaderText = @"機種番号";
-            // ReSharper disable once PossibleNullReferenceException
-            MachineDataGrid.Columns[nameof(MainViewModelGrid.Name)].HeaderText = @"機種名";
-
             // グラフ領域の設定
+            // TODO: データ設定はViewModelsへ移行する
             var area = new ChartArea
             {
                 AxisX =

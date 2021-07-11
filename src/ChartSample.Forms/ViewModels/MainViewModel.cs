@@ -18,10 +18,8 @@ namespace WinFormsMvvmSample.ViewModels
             _machineDataService = machineDataService;
             MachineDataGridSource = new BindingListAsync<MainViewModelGrid>(dispatcher);
         }
-        public string MyTextBoxText { get; set; }
 
         private string _aaaATextBoxText = "";
-
         private DateTime _startDatePickerValue = DateTime.Today;
         private DateTime _endDatePickerValue = DateTime.Today;
         public BindingListAsync<MainViewModelGrid> MachineDataGridSource { get; set; }
@@ -38,6 +36,7 @@ namespace WinFormsMvvmSample.ViewModels
             get => _startDatePickerValue;
             set => SetProperty(ref _startDatePickerValue, value);
         }
+
         public DateTime EndDateTimeValue
         {
             get => _endDatePickerValue;

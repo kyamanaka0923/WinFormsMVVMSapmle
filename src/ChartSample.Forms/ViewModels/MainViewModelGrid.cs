@@ -1,4 +1,6 @@
-﻿namespace WinFormsMvvmSample.ViewModels
+﻿using System.ComponentModel;
+
+namespace WinFormsMvvmSample.ViewModels
 {
     public class MainViewModelGrid
     {
@@ -9,8 +11,11 @@
             Selected = selected;
         }
 
+        [DisplayName("No.\naaa")]
         public string Id { get; }
+        [DisplayName("名前")]
         public string Name { get;}
+        [DisplayName("選択")]
         public bool Selected { get; set; }
     }
 }
